@@ -13,19 +13,28 @@ import java.util.List;
 @AllArgsConstructor
 public class JsonResponse {
 
+    /**
+     * Internal parameter. */
     @JsonProperty("cod")
     private Integer statusCode;
 
+    /**
+     * Internal parameter. */
     @JsonProperty("message")
     private Double message;
 
+    /**
+     * Number of lines returned by this API call. */
     @JsonProperty("cnt")
     private Integer numberDaysWeather;
 
+    /**
+     * Weather Forecasts. */
     @JsonProperty("list")
     private List<WeatherForecast> weatherForecasts;
 
+    /**
+     * Information about the city. */
     @JsonProperty("city")
     private City city;
-
 }

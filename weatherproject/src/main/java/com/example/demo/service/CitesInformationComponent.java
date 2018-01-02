@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Компонент для получения списока с информацией о городах.
+ * Component for obtaining a list with information on cities.
  */
 @Component
 public class CitesInformationComponent {
@@ -26,12 +26,15 @@ public class CitesInformationComponent {
     @Value("${jsonCityList}")
     private String jsonCityList;
 
+    @Value("${baseUrl}")
+    private String baseUrl;
+
     public CitesInformationComponent(CityRepository repository) {
         this.repository = repository;
     }
 
     /**
-     * @return информацию о всех городах.
+     * @return information about all cities.
      */
     public List<City> getAllCity() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -41,12 +44,10 @@ public class CitesInformationComponent {
     }
 
     public JsonResponse getJsonResponse(String cityName) throws Exception {
-        City city = repository.findByCityName(cityName);
-        String stringUrl = String.format(
-                "http://api.openweathermap.org/data/2.5/forecast?id=%d&cnt=16&APPID=83c377433a8a24e5ef0656303487a845",
-                city.getId());
-        URL jsonUrl = new URL(stringUrl);
         ObjectMapper mapper = new ObjectMapper();
+        City city = repository.findByCityName(cityName);
+        String stringUrl = String.format(this.baseUrl, city.getId());
+        URL jsonUrl = new URL(stringUrl);
         JsonResponse jsonResponse = mapper.readValue(jsonUrl, JsonResponse.class);
         return jsonResponse;
     }

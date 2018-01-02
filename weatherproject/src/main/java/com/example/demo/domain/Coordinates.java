@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Embeddable;
 
 /**
- * Географические координаты.
+ * City geo location.
  */
 @Data
 @Embeddable
@@ -17,12 +17,12 @@ import javax.persistence.Embeddable;
 class Coordinates {
 
     /**
-     * Долгота. */
+     * Longitude. */
     @JsonProperty("lon")
     private double longitude;
 
     /**
-     * Широта. */
+     * Latitude. */
     @JsonProperty("lat")
     private double latitude;
 }

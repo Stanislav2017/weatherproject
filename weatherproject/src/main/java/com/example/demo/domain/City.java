@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 /**
- * Класс с информацией о городе.
+ * Information about the city.
  */
 @Data
 @Entity
@@ -17,22 +17,22 @@ import javax.persistence.*;
 public class City {
 
     /**
-     * Идентификатор города. */
+     * City ID. */
     @Id
     private Long id;
 
     /**
-     * Название города. */
+     * City name. */
     @JsonProperty("name")
     private String cityName;
 
     /**
-     * Домен страны. */
+     * Country Domain. */
     @JsonProperty("country")
     private String country;
 
     /**
-     * Географические координаты города. */
+     * City geo location. */
     @Embedded
     @JsonProperty("coord")
     private Coordinates coordinates;

@@ -19,10 +19,10 @@ class Coordinates {
     /**
      * Longitude. */
     @JsonProperty("lon")
-    private double longitude;
+    private Double longitude;
 
     /**
      * Latitude. */
     @JsonProperty("lat")
-    private double latitude;
+    private Double latitude;
 }

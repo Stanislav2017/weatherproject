@@ -1,15 +1,11 @@
 package com.example.demo;
 
-import com.example.demo.domain.City;
 import com.example.demo.service.CitesInformationComponent;
 import com.example.demo.service.CityService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.io.IOException;
-import java.util.List;
 
 @SpringBootApplication
 public class WeatherApplication {
@@ -21,13 +17,13 @@ public class WeatherApplication {
 	@Bean
 	CommandLineRunner runner(CitesInformationComponent component, CityService service){
 		return args -> {
-			try {
-				List<City> cities = component.getAllCity();
-				service.save(cities);
-				System.out.println("Cities Saved!");
-			} catch (IOException e){
-				System.out.println("Unable to save cities: " + e.getMessage());
-			}
+//			try {
+//				List<City> cities = component.getCityListFromJson();
+//				service.save(cities);
+//				System.out.println("Cities Saved!");
+//			} catch (IOException e){
+//				System.out.println("Unable to save cities: " + e.getMessage());
+//			}
 		};
 	}
 }

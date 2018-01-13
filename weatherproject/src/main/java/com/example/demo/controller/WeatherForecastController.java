@@ -2,7 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.City;
 import com.example.demo.domain.weather.JsonResponse;
-import com.example.demo.service.CitesInformationComponent;
+import com.example.demo.service.CitesInfoComponent;
+import com.example.demo.service.JsonResponseComponent;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,15 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class WeatherForecastController {
 
-    private CitesInformationComponent component;
+    private JsonResponseComponent jsonResponseComponent;
 
-    public WeatherForecastController(CitesInformationComponent component) {
-        this.component = component;
+    private CitesInfoComponent citesInfoComponent;
+
+    public WeatherForecastController(
+            JsonResponseComponent jsonResponseComponent,
+            CitesInfoComponent citesInfoComponent)
+    {
+        this.jsonResponseComponent = jsonResponseComponent;
+        this.citesInfoComponent = citesInfoComponent;
     }
 
     @RequestMapping("/cities")
     public Iterable<City> list() throws Exception {
-        return component.getCityListFromJson();
+        return citesInfoComponent.getCityListFromJson();
     }
 
     @RequestMapping(
@@ -32,7 +39,7 @@ public class WeatherForecastController {
             @PathVariable("amount_days") Integer amountDays)
             throws Exception
     {
-        return component.getWeatherForecastBy(cityName, countryCode, amountDays);
+        return jsonResponseComponent.getWeatherForecastBy(cityName, countryCode, amountDays);
     }
 
     @RequestMapping(
@@ -43,7 +50,7 @@ public class WeatherForecastController {
             @PathVariable("amount_days") Integer amountDays)
             throws Exception
     {
-        return component.getWeatherForecastBy(cityId, amountDays);
+        return jsonResponseComponent.getWeatherForecastBy(cityId, amountDays);
     }
 
     @RequestMapping(
@@ -55,6 +62,6 @@ public class WeatherForecastController {
             @PathVariable("amount_days") Integer amountDays)
             throws Exception
     {
-        return component.getWeatherForecastBy(longitude, latitude, amountDays);
+        return jsonResponseComponent.getWeatherForecastBy(longitude, latitude, amountDays);
     }
 }

@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.service.CitesInformationComponent;
+import com.example.demo.service.CitesInfoComponent;
 import com.example.demo.service.CityService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +15,7 @@ public class WeatherApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(CitesInformationComponent component, CityService service){
+	CommandLineRunner runner(CitesInfoComponent component, CityService service){
 		return args -> {
 //			try {
 //				List<City> cities = component.getCityListFromJson();
